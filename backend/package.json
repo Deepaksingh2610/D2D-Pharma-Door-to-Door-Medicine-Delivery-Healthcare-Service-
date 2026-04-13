@@ -1,0 +1,30 @@
+{
+  "name": "d2d-pharma-backend",
+  "version": "1.0.0",
+  "description": "Backend for D2D Pharma Service",
+  "main": "src/index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cloudinary": "^2.9.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "mongodb": "^7.1.0",
+    "mongoose": "^9.3.0",
+    "mongoose-aggregate-paginate-v2": "^1.1.4",
+    "multer": "^2.1.1",
+    "nodemailer": "^8.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
