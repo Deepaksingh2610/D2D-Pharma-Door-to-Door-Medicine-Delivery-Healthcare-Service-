@@ -56,6 +56,7 @@ app.use(cors({
             if (origins.includes(origin)) return callback(null, true);
         }
 
+        console.error(`[CORS REJECTED] Origin: ${origin}. Add this to CORS_ORIGIN env var.`);
         callback(new Error(`CORS: Origin '${origin}' is not allowed`));
     },
     credentials: true,
