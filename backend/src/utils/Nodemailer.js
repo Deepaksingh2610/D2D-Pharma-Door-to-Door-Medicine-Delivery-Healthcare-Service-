@@ -1,13 +1,21 @@
 import nodemailer from "nodemailer";
 
+// Log variable PRESENCE (not values) to help debug Render environment setup
+const emailStatus = process.env.EMAIL ? "PRESENT" : "MISSING";
+const passStatus = process.env.EMAIL_PASS ? "PRESENT" : "MISSING";
+console.log(`[Diagnostic] Email Env Status: User=${emailStatus}, Pass=${passStatus}`);
+
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
-    port: 465,
-    secure: true, // Use SSL/TLS
+    port: 587,
+    secure: false, // Use STARTTLS
     auth: {
         user: process.env.EMAIL,
         pass: process.env.EMAIL_PASS,
     },
+    tls: {
+        rejectUnauthorized: false // Helps in some restricted cloud environments
+    }
 });
 
 export const sendOTPEmail = async (email, otp) => {
