@@ -22,7 +22,7 @@
     "mongoose": "^9.3.0",
     "mongoose-aggregate-paginate-v2": "^1.1.4",
     "multer": "^2.1.1",
-    "resend": "^6.11.0"
+    "@getbrevo/brevo": "^2.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
