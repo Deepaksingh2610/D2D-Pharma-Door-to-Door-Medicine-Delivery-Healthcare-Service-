@@ -7,7 +7,7 @@ import { Doctor } from "../models/doctor.model.js";
 import { Lab } from "../models/lab.model.js";
 import { Pharmacy } from "../models/pharmacy.model.js";
 import { OTP } from "../models/otp.model.js";
-import { sendOTPEmail } from "../utils/Nodemailer.js";
+import { sendOTPEmail } from "../utils/MailService.js";
 
 const uploadFileHelper = async (localPath) => {
     if (!localPath) return null;
