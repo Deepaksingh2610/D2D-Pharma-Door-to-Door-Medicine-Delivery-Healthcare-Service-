@@ -1,25 +1,24 @@
 import nodemailer from "nodemailer";
 
-// Log variable PRESENCE (not values) to help debug Render environment setup
-const emailStatus = process.env.EMAIL ? "PRESENT" : "MISSING";
-const passStatus = process.env.EMAIL_PASS ? "PRESENT" : "MISSING";
-console.log(`[Diagnostic] Email Env Status: User=${emailStatus}, Pass=${passStatus}`);
-
-const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // Use STARTTLS
-    auth: {
-        user: process.env.EMAIL,
-        pass: process.env.EMAIL_PASS,
-    },
-    tls: {
-        rejectUnauthorized: false // Helps in some restricted cloud environments
-    },
-    family: 4 // Force IPv4 (Fixes ENETUNREACH on IPv6)
-});
-
 export const sendOTPEmail = async (email, otp) => {
+    // Log variable PRESENCE every time we try to send an email
+    const emailStatus = process.env.EMAIL ? "PRESENT" : "MISSING";
+    const passStatus = process.env.EMAIL_PASS ? "PRESENT" : "MISSING";
+    console.log(`[Diagnostic] Attempting email send. Env Status: User=${emailStatus}, Pass=${passStatus}`);
+
+    const transporter = nodemailer.createTransport({
+        host: "smtp.googlemail.com", // Alternate host often better for cloud servers
+        port: 465,
+        secure: true, 
+        auth: {
+            user: process.env.EMAIL,
+            pass: process.env.EMAIL_PASS,
+        },
+        family: 4, // Force IPv4
+        connectionTimeout: 10000, // 10 seconds timeout
+        greetingTimeout: 5000, 
+    });
+
     const mailOptions = {
         from: `"D2D Pharma" <${process.env.EMAIL}>`,
         to: email,
