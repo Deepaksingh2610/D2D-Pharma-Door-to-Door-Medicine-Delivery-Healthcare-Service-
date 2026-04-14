@@ -15,7 +15,8 @@ const transporter = nodemailer.createTransport({
     },
     tls: {
         rejectUnauthorized: false // Helps in some restricted cloud environments
-    }
+    },
+    family: 4 // Force IPv4 (Fixes ENETUNREACH on IPv6)
 });
 
 export const sendOTPEmail = async (email, otp) => {
